@@ -1,5 +1,7 @@
 FROM ruby:3.1.0
 
+ENV RAILS_ENV=production
+
 ## nodejsとyarnはwebpackをインストールする際に必要
 # yarnパッケージ管理ツールをインストール
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
