@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   root 'stati_pages#home'
+  post '/callback' => 'linebot#callback'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
