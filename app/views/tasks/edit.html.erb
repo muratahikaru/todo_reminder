@@ -1,0 +1,15 @@
+<%= form_with(model: [@user ,@task], lacal: true) do |f| %>
+  <div>
+    <%= f.label :課題名%>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :期限 %>
+    <%= f.datetime_select :deadline %>
+  </div>
+
+  <div>
+    <%= f.submit "保存" %>
+  </div>
+<% end %>

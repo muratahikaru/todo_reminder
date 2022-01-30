@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'sessions#new'
   get '/home' => "stati_pages#home"
+  resources :users do
+    resources :tasks
+  end
   post '/callback' => 'linebot#callback'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to home_path
+      redirect_to user_tasks_path(user)
     else
       flash.now[:danger] = 'emailまたはパスワードが正しくありません'
       render 'new'
