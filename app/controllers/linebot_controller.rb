@@ -23,15 +23,13 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       case event
-      when Line::Bot::Event::Message
-        case event.type
-        when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
-          client.reply_message(event['replyToken'], message)
-        end
+      when Line::Bot::Event::Follow
+        user_id = event['source']['userId']
+        message = {
+          type: 'text',
+          text: "あなたのlineidは#{user_id}です。\nシステムに登録してください"
+        }
+        client.reply_message(event['replyToken'], message)
       end
     }
 
