@@ -1,6 +1,7 @@
 FROM ruby:3.0.1
 
 ENV RAILS_ENV=production
+ENV TZ Asia/Tokyo
 
 ## nodejsとyarnはwebpackをインストールする際に必要
 # yarnパッケージ管理ツールをインストール
