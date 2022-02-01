@@ -27,7 +27,7 @@ class LinebotController < ApplicationController
         user_id = event['source']['userId']
         message = {
           type: 'text',
-          text: "あなたのlineidは#{user_id}です。\nシステムに登録してください"
+          text: "あなたのlineidは#{user_id}です。\nシステムに登録してください。"
         }
         client.reply_message(event['replyToken'], message)
       end
