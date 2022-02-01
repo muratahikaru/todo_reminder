@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  # before_action :logged_in_user
-  # before_action :correct_user
+  before_action :logged_in_user
+  before_action :correct_user
 
   def index
     @user = User.find_by(id: params[:user_id])
