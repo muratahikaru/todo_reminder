@@ -40,12 +40,23 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    user = User.find_by(id: params[:user_id])
+    task = Task.find_by(id: params[:id])
+    task.destroy
+    flash[:notice] = "削除しました"
+    redirect_to("/users/#{user.id}/tasks/completed")
+
   end
 
   def complete
     task = Task.find_by(id: params[:id])
     task.complete
     redirect_to user_tasks_path(params[:user_id])
+  end
+
+  def completed
+    @user = User.find_by(id: params[:user_id])
+    @tasks = Task.where(is_finished: true, user_id: params[:user_id])
   end
 
     private

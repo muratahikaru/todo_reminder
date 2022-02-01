@@ -1,0 +1,12 @@
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= link_to(edit_user_task_path(@user, task)) do %>
+        <p class="width-60"><%= task.name %></p>
+        <p><%= datetime_formatter(task.deadline) %></p>
+      <% end %>
+      <%= link_to "削除", user_task_path(@user, task) , method: :delete %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "戻る", user_tasks_path(@user) %>

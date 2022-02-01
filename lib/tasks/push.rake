@@ -1,7 +1,7 @@
 namespace :push_line do
   desc "期限に迫った課題を通知します"
   task push_line_message: :environment do
-    tasks = Task.where("deadline >= ? AND deadline < ? ", Date.today.ago(0.day), Date.today.since(1.day)) #期限当日の課題を取得
+    tasks = Task.where("deadline >= ? AND deadline < ? AND is_finished = false", Date.today.ago(0.day), Date.today.since(1.day)) #期限当日の課題を取得
     pushed_users_ids = tasks.pluck(:user_id).uniq #メッセージを送るユーザのidを配列形式で保存
 
     pushed_users_ids.each do |pushed_user_id| #ユーザの数だけ繰り返す

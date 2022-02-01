@@ -16,6 +16,8 @@
     <% end %>
   </ul>
   <%= link_to("追加", new_user_task_path(@user)) %>
+
+  <%= link_to '完了済み', "/users/#{@user.id}/tasks/completed" %>
 </div>
 
 
