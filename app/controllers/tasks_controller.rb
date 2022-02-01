@@ -1,7 +1,10 @@
 class TasksController < ApplicationController
+  # before_action :logged_in_user
+  # before_action :correct_user
+
   def index
     @user = User.find_by(id: params[:user_id])
-    @tasks = @user.tasks
+    @tasks = @user.tasks.where(is_finished: false)
   end
 
   def new
@@ -39,8 +42,26 @@ class TasksController < ApplicationController
   def destroy
   end
 
+  def complete
+    task = Task.find_by(id: params[:id])
+    task.complete
+    redirect_to user_tasks_path(params[:user_id])
+  end
+
     private
-    def task_params
-      params.require(:task).permit(:name, :deadline).merge(user_id: params[:user_id])
-    end
+      def task_params
+        params.require(:task).permit(:name, :deadline).merge(user_id: params[:user_id])
+      end
+
+      def logged_in_user
+        unless logged_in?
+          flash[:danger] = "ログインしてください"
+          redirect_to root_url
+        end
+      end
+
+      def correct_user
+        @user = User.find(params[:user_id])
+        redirect_to(root_url) unless @user == current_user
+      end
 end

@@ -7,7 +7,24 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+require("jquery");
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// $(function (){
+//     $("#finished").click(function (){
+//         $.ajax({
+//             type: 'GET',
+//             url: '/users/1/tasks/finished',
+//             dataType: 'json'
+//         })
+//         .done(function (data){
+//             alert("成功しました")
+//         })
+//         .fail(function (){
+//             alert("失敗しました")
+//         })
+//     })
+// })

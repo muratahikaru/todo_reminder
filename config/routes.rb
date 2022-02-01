@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/home' => "stati_pages#home"
   resources :users do
     resources :tasks
+    patch 'tasks/:id/complete' => 'tasks#complete'
   end
   post '/callback' => 'linebot#callback'
   post   '/login',   to: 'sessions#create'

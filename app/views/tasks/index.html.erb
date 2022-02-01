@@ -1,17 +1,18 @@
 <h1><%= @user.name %>さんの課題一覧</h1>
 <div class="todo_list">
-  <div class="flex">
-    <p class="width-25">課題名</p>
-    <p>期限</p>
-  </div>
+<!--  <div class="flex">-->
+<!--    <p class="width-25">課題名</p>-->
+<!--    <p>期限</p>-->
+<!--  </div>-->
   <ul>
     <% @tasks.each do |task| %>
-      <%= link_to(edit_user_task_path(@user, task)) do %>
-        <li class="flex">
-          <p class="width-25"><%= task.name %></p>
-          <p><%= datetime_formatter(task.deadline) %></p>
-        </li>
-      <% end %>
+      <li>
+        <%= link_to(edit_user_task_path(@user, task)) do %>
+            <p class="width-60"><%= task.name %></p>
+            <p><%= datetime_formatter(task.deadline) %></p>
+        <% end %>
+        <%= link_to "完了", "tasks/#{task.id}/complete", method: :patch %>
+      </li>
     <% end %>
   </ul>
   <%= link_to("追加", new_user_task_path(@user)) %>
