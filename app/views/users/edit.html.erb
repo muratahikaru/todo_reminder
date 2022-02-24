@@ -24,10 +24,12 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <div>
-    <%= f.label :is_admin %>
-    <%= f.check_box :is_admin, {checked_value: true, unchecked_value: false} %>
-  </div>
+  <% if @user.is_admin? %>
+    <div>
+      <%= f.label :is_admin %>
+      <%= f.check_box :is_admin, {checked_value: true, unchecked_value: false} %>
+    </div>
+  <% end %>
 
   <div>
     <%= f.submit "Update" %>

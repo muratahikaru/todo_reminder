@@ -19,6 +19,8 @@
       <ul>
         <% if logged_in? %>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <li><%= link_to "課題一覧", user_tasks_path(@current_user) %></li>
+          <li><%= link_to "profile", user_path(@current_user) %></li>
           <% if is_admin? %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
           <% end %>
