@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/new'
   root 'sessions#new'
   get '/home' => "stati_pages#home"
   get '/users/:user_id/tasks/completed' => 'tasks#completed'
