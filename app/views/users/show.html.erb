@@ -1,0 +1,5 @@
+<%= @user.name %>
+<%= @user.email %>
+<%= @user.uid %>
+<%= link_to "edit", edit_user_path(@user) %>
+<%= link_to "destroy", user_path(@user), method: :delete %>

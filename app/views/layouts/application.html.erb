@@ -19,10 +19,8 @@
       <ul>
         <% if logged_in? %>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
-          <% if @current_user.uid.empty? %>
-            <li>lineと連携</li>
-          <% else %>
-            <li>lineUID再設定</li>
+          <% if is_admin? %>
+            <li><%= link_to "ユーザー一覧", users_path %></li>
           <% end %>
         <% end %>
       </ul>
