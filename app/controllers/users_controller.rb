@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user
+  before_action :correct_user
 
   def index
     @users = User.all
@@ -46,4 +48,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :uid, :password, :password_confirmation)
   end
+
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    unless @user = current_user || is_admin?
+      log_out
+      redirect_to root_url
+    end
+  end
+
 end

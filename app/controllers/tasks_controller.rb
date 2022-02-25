@@ -64,13 +64,6 @@ class TasksController < ApplicationController
         params.require(:task).permit(:name, :deadline).merge(user_id: params[:user_id])
       end
 
-      def logged_in_user
-        unless logged_in?
-          flash[:danger] = "ログインしてください"
-          redirect_to root_url
-        end
-      end
-
       def correct_user
         @user = User.find(params[:user_id])
         redirect_to(root_url) unless @user == current_user
