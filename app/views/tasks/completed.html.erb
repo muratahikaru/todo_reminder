@@ -1,12 +1,29 @@
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= link_to(edit_user_task_path(@user, task)) do %>
-        <p class="width-60"><%= task.name %></p>
-        <p><%= datetime_formatter(task.deadline) %></p>
-      <% end %>
-      <%= link_to "削除", user_task_path(@user, task) , method: :delete %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "戻る", user_tasks_path(@user) %>
+<%= render partial: "layouts/sidebar" %>
+<div class="content-wrapper">
+  <div class="content-header"></div>
+  <div class="content">
+    <div class="row">
+      <div class="col-12">
+        <% @tasks.each do |task| %>
+          <ul>
+            <li class="card flex-wrapper">
+              <%= link_to(edit_user_task_path(@user, task), class: 'task-link' ) do %>
+                <p class="task-name"><%= task.name %></p>
+                <p class="deadline"><%= datetime_formatter(task.deadline) %></p>
+              <% end %>
+              <div>
+                <%= link_to(user_task_path(@user, task), class: "delete-link" ,method: :delete) do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+        <div class="back-btn-wrapper">
+          <%= link_to "< Back", user_tasks_path(@user), class: "btn btn-block bg-gradient-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: "layouts/footer" %>
