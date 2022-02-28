@@ -13,18 +13,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// $(function (){
-//     $("#finished").click(function (){
-//         $.ajax({
-//             type: 'GET',
-//             url: '/users/1/tasks/finished',
-//             dataType: 'json'
-//         })
-//         .done(function (data){
-//             alert("成功しました")
-//         })
-//         .fail(function (){
-//             alert("失敗しました")
-//         })
-//     })
-// })
+$(function($) {
+    $(document).on('click',".clickable-row",function() {
+        location.href = $(this).data("href");
+    });
+});
