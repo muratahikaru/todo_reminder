@@ -1,20 +1,37 @@
 <%= render partial: "layouts/sidebar" %>
 <div class="content-wrapper">
-  <h1><%= @user.name %>さんの課題一覧</h1>
-  <ul>
-    <% @tasks.each do |task| %>
-      <li>
-        <%= link_to(edit_user_task_path(@user, task)) do %>
-            <p class="width-60"><%= task.name %></p>
-            <p><%= datetime_formatter(task.deadline) %></p>
+  <div class="content-header">
+    <%= link_to '> 完了済み', "/users/#{@user.id}/tasks/completed", class: "bg-gradient-secondary comp-index-link" %>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="col-12">
+        <% @tasks.each do |task| %>
+          <ul>
+            <li class="card flex-wrapper">
+              <div>
+                <%= link_to("tasks/#{task.id}/complete", class: "comp-link" ,method: :patch) do %>
+                  <i class="fas fa-check"></i>
+                <% end %>
+              </div>
+              <%= link_to(edit_user_task_path(@user, task), class: 'task-link' ) do %>
+                <p class="task-name"><%= task.name %></p>
+                <p class="deadline"><%= datetime_formatter(task.deadline) %></p>
+              <% end %>
+              <div>
+                <%= link_to(user_task_path(@user, task), class: "delete-link" ,method: :delete) do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              </div>
+            </li>
+          </ul>
         <% end %>
-        <%= link_to "完了", "tasks/#{task.id}/complete", method: :patch %>
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to("追加", new_user_task_path(@user)) %>
-
-  <%= link_to '完了済み', "/users/#{@user.id}/tasks/completed" %>
+        <div class="btn-container">
+          <%= link_to("＋新しいタスクを追加", new_user_task_path(@user), class: "btn btn-block bg-gradient-primary") %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <%= render partial: "layouts/footer" %>
 

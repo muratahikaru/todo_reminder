@@ -44,8 +44,7 @@ class TasksController < ApplicationController
     task = Task.find_by(id: params[:id])
     task.destroy
     flash[:notice] = "削除しました"
-    redirect_to("/users/#{user.id}/tasks/completed")
-
+    redirect_to("/users/#{user.id}/tasks")
   end
 
   def complete
