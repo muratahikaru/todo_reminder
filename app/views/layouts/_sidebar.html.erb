@@ -26,7 +26,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="info d-block">
-        <%= link_to @user.name , user_path(@current_user) %>
+        <%= link_to @current_user.name , user_path(@current_user) %>
       </div>
     </div>
     <!-- Sidebar Menu -->
@@ -35,7 +35,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <%= link_to user_tasks_path(@user) , class: "nav-link" do %>
+          <%= link_to user_tasks_path(@current_user) , class: "nav-link" do %>
             <i class="nav-icon fas fa-file"></i>
             <p>
               タスク

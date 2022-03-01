@@ -1,37 +1,64 @@
-<%= form_with(model: @user, local: true) do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= render partial: "layouts/sidebar" %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
   </div>
+  <!-- /.content-header -->
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div>
-    <%= f.label :uid %>
-    <%= f.text_field :uid %>
-  </div>
-
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.label :pastruresword_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <% if @user.is_admin? %>
-    <div>
-      <%= f.label :is_admin %>
-      <%= f.check_box :is_admin, {checked_value: true, unchecked_value: false} %>
+  <!-- Main content -->
+  <div class="content">
+    <div class="card">
+      <!-- form start -->
+      <%= form_with(model: @user, local: true) do |f| %>
+        <div class="card-body">
+          <div class="form-group row">
+            <%= f.label :名前, class: "col-sm-2 col-form-label fw-bold" %>
+            <div class="col-sm-10">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :Eメール, class: "col-sm-2 col-form-label fw-bold" %>
+            <div class="col-sm-10">
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :Uid, class: "col-sm-2 col-form-label fw-bold" %>
+            <div class="col-sm-10">
+              <%= f.text_field :uid, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :パスワード, class: "col-sm-2 col-form-label fw-bold" %>
+            <div class="col-sm-10">
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :確認用パスワード, class: "col-sm-2 col-form-label fw-bold" %>
+            <div class="col-sm-10">
+              <%= f.password_field :password_confirmation, class: "form-control" %>
+            </div>
+          </div>
+          <% if @user.is_admin %>
+            <div class="form-group row">
+              <%= f.label :管理者権限, class: "col-sm-2 col-form-label fw-bold" %>
+              <div class="col-sm-10">
+                <%= f.check_box :is_admin, {checked_value: true, unchecked_value: false}, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+　      </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <%= f.submit "更新",class: "btn btn-info" %>
+          <%= link_to "キャンセル", user_path(@user) , class: 'btn btn-default' %>
+        </div>
+      <% end %>
+      <!-- /.card-footer -->
     </div>
-  <% end %>
-
-  <div>
-    <%= f.submit "Update" %>
   </div>
-<% end %>
+  <!-- /.content -->
+</div>
+<%= render partial: "layouts/footer" %>
