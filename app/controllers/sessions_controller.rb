@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
+      flash[:notice] = "ログインしました"
       log_in user
       redirect_to user_tasks_path(user)
     else
-      flash.now[:danger] = 'emailまたはパスワードが正しくありません'
+      flash.now[:alert] = 'emailまたはパスワードが正しくありません'
       render 'new'
     end
   end

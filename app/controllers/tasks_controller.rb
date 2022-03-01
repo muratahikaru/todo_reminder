@@ -18,7 +18,7 @@ class TasksController < ApplicationController
       flash[:notice] = "保存しました"
       redirect_to user_tasks_path(params[:user_id])
     else
-      flash.now[:danger] = "変更できませんでした"
+      flash.now[:alert] = "変更できませんでした"
       render 'new'
     end
   end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
       flash[:notice] = "変更しました"
       redirect_to user_tasks_path(params[:user_id])
     else
-      flash.now[:danger] = "変更できませんでした"
+      flash.now[:alert] = "変更できませんでした"
       render 'edit'
     end
   end
@@ -50,6 +50,7 @@ class TasksController < ApplicationController
   def complete
     task = Task.find_by(id: params[:id])
     task.complete
+    flash[:notice] = "完了しました"
     redirect_to user_tasks_path(params[:user_id])
   end
 

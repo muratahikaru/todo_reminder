@@ -11,25 +11,15 @@
   </head>
 
   <body class="hold-transition sidebar-mini">
-  <% flash.each do |message_type, message| %>
-    <%= message %>
-  <% end %>
-<!--  <header>-->
-<!--    <nav>-->
-<!--      <ul>-->
-        <%# if logged_in? %>
-<!--          <li><%#= link_to "Log out", logout_path, method: :delete %></li>-->
-<!--          <li><%#= link_to "課題一覧", user_tasks_path(@current_user) %></li>-->
-<!--          <li><%#= link_to "profile", user_path(@current_user) %></li>-->
-          <%# if is_admin? %>
-<!--            <li><%#= link_to "ユーザー一覧", users_path %></li>-->
-          <%# end %>
-        <%# end %>
-<!--      </ul>-->
-<!--    </nav>-->
-<!--  </header>-->
-  <div class="wrapper">
-    <%= yield %>
-  </div>
+    <% flash.each do |type, value| %>
+    <% type = "success" if type == "notice" %>
+    <% type = "error" if type == "alert" %>
+      <script type="text/javascript">
+          toastr['<%= type %>']('<%= value %>');
+      </script>
+    <% end %>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
   </body>
 </html>

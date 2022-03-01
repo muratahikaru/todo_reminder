@@ -13,6 +13,9 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import toastr from 'toastr'
+window.toastr = toastr
+
 $(function($) {
     $(document).on('click',".clickable-row",function() {
         location.href = $(this).data("href");
