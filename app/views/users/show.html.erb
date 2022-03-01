@@ -1,5 +1,51 @@
-<%= @user.name %>
-<%= @user.email %>
-<%= @user.uid %>
-<%= link_to "edit", edit_user_path(@user) %>
-<%= link_to "destroy", user_path(@user), method: :delete %>
+<%= render partial: "layouts/sidebar" %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <!-- /.card-header -->
+          <div class="card-header adjust">
+            <div class="card-tools">
+              <div class="navbar-nav ml-auto">
+                <%= link_to "編集", edit_user_path(@user) , class: 'btn btn-block btn-default' %>
+              </div>
+            </div>
+          </div>
+          <div class="card-body table-responsive p-0">
+            <div class="border box-show rounded">
+              <table class="table table-bordered none-margin">
+                <tbody>
+                <tr>
+                  <th class="col-sm-3">名前</th>
+                  <td><%= @user.name %></td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td><%= @user.email %></td>
+                </tr>
+                <tr>
+                  <th>UID</th>
+                  <td><%= @user.uid %></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer px-5 py-4 bg-transparent">
+                <%= link_to "アカウントの削除", user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger" %>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+<%= render partial: "layouts/footer" %>
