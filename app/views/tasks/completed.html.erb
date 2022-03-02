@@ -1,12 +1,25 @@
 <%= render partial: "layouts/sidebar" %>
 <div class="content-wrapper">
-  <div class="content-header"></div>
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "タスク", user_tasks_path(@user) %></li>
+            <li class="breadcrumb-item active">完了済み</li>
+          </ol>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
   <div class="content">
     <div class="row">
       <div class="col-12">
         <% @tasks.each do |task| %>
           <ul>
-            <li class="card flex-wrapper">
+            <li class="card flex-wrapper completed">
               <%= link_to(edit_user_task_path(@user, task), class: 'task-link' ) do %>
                 <p class="task-name"><%= task.name %></p>
                 <p class="deadline"><%= datetime_formatter(task.deadline) %></p>

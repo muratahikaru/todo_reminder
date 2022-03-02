@@ -2,6 +2,22 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "タスク", user_tasks_path(@user) %></li>
+            <% if @task.is_finished %>
+              <li class="breadcrumb-item"><%= link_to "完了済み", "/users/#{@user.id}/tasks/completed" %></li>
+            <% end %>
+            <li class="breadcrumb-item active"><%= @task.name %></li>
+            <li class="breadcrumb-item active">編集</li>
+          </ol>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
 
